@@ -1,4 +1,3 @@
-topicprefix = /topic/
 main_collective = mcollective
 collectives = mcollective
 libdir = /usr/libexec/mcollective
@@ -9,11 +8,13 @@ loglevel = warn
 securityprovider = psk
 plugin.psk = unset
 
-connector = stomp
-plugin.stomp.host = <%= @mqmaster %>
-plugin.stomp.port = <%= @mqport %> #port for rabbitmq
-plugin.stomp.user = <%= @mquser %>
-plugin.stomp.password = <%= @mqpassword %>
+connector = rabbitmq
+plugin.rabbitmq.vhost = /mcollective
+plugin.rabbitmq.pool.size = 1
+plugin.rabbitmq.pool.1.host = <%= @mq_master %>
+plugin.rabbitmq.pool.1.port = <%= @mq_port %> #port for rabbitmq
+plugin.rabbitmq.pool.1.user = <%= @mq_user %>
+plugin.rabbitmq.pool.1.password = <%= @mq_password %>
 
 # Facts
 factsource = yaml
